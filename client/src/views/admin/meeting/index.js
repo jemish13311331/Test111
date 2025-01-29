@@ -90,8 +90,9 @@ const Index = () => {
 
     const handleDeleteMeeting = async (ids) => {
         try {
+            console.log(ids); 
             setIsLoding(true)
-            let response = await deleteManyApi('api/meeting/deleteMany', ids)
+            let response = await deleteManyApi('api/meeting/deleteMany', {ids})
             if (response.status === 200) {
                 setSelectedValues([])
                 setDeleteMany(false)

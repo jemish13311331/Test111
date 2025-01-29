@@ -42,7 +42,22 @@ const AddMeeting = (props) => {
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema: MeetingSchema,
-        onSubmit: (values, { resetForm }) => {
+        onSubmit: async (values, { resetForm }) => {
+           try {
+                const result = await postApi('api/meeting/add', values);
+                if (result.status === 200) {
+                console.log('Meeting created successfully:', result.data);
+                resetForm(); 
+                
+                onClose();
+                window.location.reload()
+                } else {
+                    console.log('Failed to create meeting:', result);
+                }
+            } catch (err) {
+                console.error('Error creating meeting:', err);
+            }
+            
             
         },
     });

@@ -22,7 +22,7 @@ const MeetingView = (props) => {
     const fetchViewData = async () => {
         if (info) {
             setIsLoding(true)
-            let result = await getApi('api/meeting/view/', info?.event ? info?.event?.id : info);
+            let result = await getApi(`api/meeting/view/${info?.event?.id}`, info?.event ? info?.event?.id : info);
             setData(result?.data);
             setIsLoding(false)
         }
